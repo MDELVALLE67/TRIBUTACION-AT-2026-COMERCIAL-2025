@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TribCL Pro 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pr:#0d5c3a;--pr2:#0a7a4e;--pr3:#e6f4ee;--pr4:#b8ddc8;
+  --acc:#f59e0b;
+  --bg:#f1f5f2;--w:#ffffff;--s:#f8faf9;--b1:#e2e9e5;--b2:#c9d7cf;
+  --tx:#1a2e24;--tx2:#3d5a4a;--mu:#7a9985;
+  --ok:#059669;--ok2:#d1fae5;--wa:#d97706;--wa2:#fef3c7;
+  --er:#dc2626;--er2:#fee2e2;--in:#2563eb;--in2:#dbeafe;--pu:#7c3aed;--pu2:#ede9fe;
+  --r1:#0d5c3a;--r2:#2563eb;--r3:#7c3aed;--r4:#d97706;--r5:#64748b;
+  --sh:0 1px 3px rgba(13,92,58,.08),0 1px 2px rgba(13,92,58,.06);
+  --sh2:0 4px 16px rgba(13,92,58,.12);--sh3:0 12px 40px rgba(13,92,58,.18);
+  --rad:12px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:15px;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;}
+
+/* ── LOGIN ── */
+#loginWrap{position:fixed;inset:0;z-index:9999;display:flex;transition:opacity .5s;}
+.login-left{flex:1;background:linear-gradient(160deg,var(--pr) 0%,#072e1c 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px;position:relative;overflow:hidden;}
+.login-left::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(245,158,11,.12) 0%,transparent 50%)}
+.login-left::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(255,255,255,.015) 30px,rgba(255,255,255,.015) 31px)}
+.ll-inner{position:relative;z-index:1;text-align:center;width:100%;max-width:380px;}
+.ll-brand{font-size:3rem;font-weight:800;color:#fff;letter-spacing:-.06em;line-height:1;margin-bottom:10px;}
+.ll-brand em{color:var(--acc);font-style:normal;}
+.ll-tagline{font-size:.88rem;color:rgba(255,255,255,.5);margin-bottom:36px;}
+.ll-feat{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 15px;margin-bottom:8px;text-align:left;}
+.ll-feat-i{width:32px;height:32px;border-radius:8px;background:rgba(245,158,11,.2);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.ll-feat-t{font-size:.76rem;color:rgba(255,255,255,.7);}
+.ll-feat-t b{color:#fff;display:block;margin-bottom:1px;}
+.login-right{width:420px;background:var(--w);display:flex;flex-direction:column;justify-content:center;padding:46px 42px;box-shadow:var(--sh3);overflow-y:auto;}
+.lr-title{font-size:1.4rem;font-weight:800;color:var(--tx);margin-bottom:3px;letter-spacing:-.02em;}
+.lr-sub{font-size:.78rem;color:var(--mu);margin-bottom:20px;}
+.lr-badge{display:inline-flex;align-items:center;gap:6px;background:var(--pr3);border:1px solid var(--pr4);color:var(--pr);border-radius:999px;padding:5px 12px;font-size:.66rem;font-weight:700;margin-bottom:20px;}
+.lf{margin-bottom:14px;}
+.lf label{display:block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--tx2);margin-bottom:5px;}
+.lf input{width:100%;padding:10px 13px;border:1.5px solid var(--b2);border-radius:9px;font-family:'Outfit',sans-serif;font-size:.92rem;color:var(--tx);background:var(--s);outline:none;transition:all .2s;}
+.lf input:focus{border-color:var(--pr);background:var(--w);box-shadow:0 0 0 3px rgba(13,92,58,.1);}
+.lf-err{color:var(--er);font-size:.74rem;margin-top:6px;display:none;font-weight:600;padding:7px 10px;background:var(--er2);border-radius:6px;}
+.l-btn{width:100%;padding:11px;border-radius:9px;border:none;cursor:pointer;background:var(--pr);color:#fff;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;transition:all .2s;margin-top:3px;box-shadow:0 4px 14px rgba(13,92,58,.3);}
+.l-btn:hover{background:var(--pr2);transform:translateY(-1px);}
+.l-divider{display:flex;align-items:center;gap:10px;margin:16px 0 10px;}
+.l-divider::before,.l-divider::after{content:'';flex:1;height:1px;background:var(--b1);}
+.l-divider span{font-size:.67rem;color:var(--mu);}
+.l-ucard{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--s);border:1px solid var(--b1);border-radius:8px;cursor:pointer;transition:all .15s;margin-bottom:6px;}
+.l-ucard:hover{background:var(--pr3);border-color:var(--pr4);}
+.l-ucard-ico{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;}
+.l-ucard-info{flex:1;}
+.l-ucard-info b{display:block;font-size:.77rem;color:var(--tx);}
+.l-ucard-info span{color:var(--mu);font-size:.67rem;}
+.l-role{font-size:.59rem;font-weight:700;padding:2px 8px;border-radius:999px;}
+.role-a{background:var(--pr3);color:var(--pr);}
+.role-c{background:var(--in2);color:var(--in);}
+.role-v{background:var(--ok2);color:var(--ok);}
+@media(max-width:800px){.login-left{display:none;}.login-right{width:100%;}}
+
+/* ── APP ── */
+#app{display:none;min-height:100vh;flex-direction:column;}
+.topbar{height:52px;background:var(--pr);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+.tb-brand{font-size:1.1rem;font-weight:800;letter-spacing:-.03em;display:flex;align-items:center;gap:8px;}
+.tb-brand em{color:var(--acc);font-style:normal;}
+.tb-sep{width:1px;height:16px;background:rgba(255,255,255,.2);}
+.tb-sub{font-size:.67rem;font-weight:400;color:rgba(255,255,255,.55);}
+.tb-pills{display:flex;gap:7px;}
+.tb-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px 11px;font-size:.63rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;}
+.tb-pill.gold{background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.35);color:#fcd34d;}
+.tb-right{display:flex;align-items:center;gap:9px;}
+.tb-ava{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.76rem;}
+.tb-uinfo{display:flex;flex-direction:column;align-items:flex-end;}
+.tb-uname{font-weight:600;font-size:.76rem;}
+.tb-urole{font-size:.6rem;color:rgba(255,255,255,.45);}
+.tb-out{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 11px;border-radius:7px;cursor:pointer;font-size:.72rem;font-weight:600;font-family:inherit;transition:all .15s;}
+.tb-out:hover{background:rgba(255,255,255,.2);}
+.app-body{display:flex;flex:1;}
+.sidebar{width:218px;background:var(--w);border-right:1px solid var(--b1);padding:14px 0;flex-shrink:0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;}
+.sb-lbl{font-size:.57rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);padding:0 16px;margin:12px 0 4px;display:block;}
+.sbi{display:flex;align-items:center;gap:8px;padding:8px 10px;margin:0 8px 2px;border-radius:7px;cursor:pointer;font-size:.8rem;font-weight:500;color:var(--tx2);transition:all .15s;border:1px solid transparent;}
+.sbi:hover{background:var(--s);color:var(--tx);}
+.sbi.active{background:var(--pr3);color:var(--pr);font-weight:600;border-color:var(--pr4);}
+.sb-div{height:1px;background:var(--b1);margin:8px 10px;}
+.content{flex:1;padding:18px;overflow-x:hidden;}
+
+/* ── INFO STRIP ── */
+.istrip{background:var(--pr);border-radius:var(--rad);padding:11px 16px;margin-bottom:16px;display:flex;gap:0;align-items:center;flex-wrap:wrap;box-shadow:var(--sh2);}
+.ii{display:flex;flex-direction:column;padding:0 13px;}
+.ii:first-child{padding-left:0;}
+.isep{width:1px;height:24px;background:rgba(255,255,255,.15);}
+.ilbl{font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);font-weight:700;}
+.ival{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:#fff;font-weight:600;margin-top:1px;}
+
+/* ── CO TABS ── */
+.co-bar{display:flex;align-items:center;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+.co-tab{display:flex;align-items:center;gap:7px;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:.76rem;font-weight:600;background:var(--w);border:1.5px solid var(--b1);color:var(--tx2);transition:all .15s;box-shadow:var(--sh);}
+.co-tab.active{background:var(--pr);border-color:var(--pr);color:#fff;}
+.co-tab:hover:not(.active){border-color:var(--pr);color:var(--pr);}
+.co-del{font-size:.62rem;cursor:pointer;opacity:.4;}
+.co-tab.active .co-del{opacity:.5;color:#fff;}
+.co-del:hover{opacity:1!important;color:var(--er)!important;}
+.btn-addco{padding:6px 12px;border-radius:7px;border:1.5px dashed var(--b2);background:transparent;color:var(--mu);cursor:pointer;font-size:.76rem;font-weight:600;font-family:inherit;transition:all .15s;}
+.btn-addco:hover{border-color:var(--pr);color:var(--pr);background:var(--pr3);}
+
+/* ── CARDS ── */
+.card{background:var(--w);border:1px solid var(--b1);border-radius:var(--rad);box-shadow:var(--sh);}
+.card-h{padding:12px 16px;border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;}
+.card-t{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tx2);}
+.card-b{padding:16px;}
+
+/* ── CO INFO ── */
+.co-info{background:var(--w);border:1px solid var(--b1);border-radius:var(--rad);padding:12px 16px;margin-bottom:14px;box-shadow:var(--sh);display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;}
+.cof label{display:block;font-size:.61rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:4px;}
+.cof input,.cof select{width:100%;padding:7px 9px;border:1.5px solid var(--b1);border-radius:7px;font-family:'Outfit',sans-serif;font-size:.8rem;color:var(--tx);background:var(--s);outline:none;transition:all .15s;}
+.cof input:focus,.cof select:focus{border-color:var(--pr);background:var(--w);box-shadow:0 0 0 3px rgba(13,92,58,.1);}
+
+/* ── REGIMES ── */
+.rg{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-bottom:14px;}
+@media(max-width:1000px){.rg{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.rg{grid-template-columns:repeat(2,1fr);}}
+.rc{background:var(--w);border:2px solid var(--b1);border-radius:var(--rad);padding:12px 11px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;box-shadow:var(--sh);}
+.rc:hover{transform:translateY(-2px);box-shadow:var(--sh2);border-color:var(--rcol);}
+.rc.active{border-color:var(--rcol);background:var(--rclt);box-shadow:var(--sh2);}
+.rc-bar{position:absolute;top:0;left:0;right:0;height:4px;background:var(--rcol);}
+.rc-sel{position:absolute;top:9px;right:9px;width:17px;height:17px;border-radius:50%;border:2px solid var(--b2);display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;transition:all .2s;}
+.rc.active .rc-sel{background:var(--rcol);border-color:var(--rcol);color:#fff;}
+.rc-code{font-size:.59rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);margin-bottom:3px;}
+.rc-rate{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:700;color:var(--rcol);line-height:1;margin-bottom:4px;}
+.rc-name{font-size:.71rem;font-weight:700;color:var(--tx);margin-bottom:2px;}
+.rc-desc{font-size:.6rem;color:var(--mu);line-height:1.4;}
+.rc-lim{display:inline-block;margin-top:5px;font-size:.57rem;font-weight:700;background:rgba(0,0,0,.05);border-radius:999px;padding:2px 7px;color:var(--tx2);}
+
+/* ── KPIs ── */
+.krow{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:13px;}
+@media(max-width:900px){.krow{grid-template-columns:repeat(2,1fr);}}
+.kpi{background:var(--w);border:1px solid var(--b1);border-radius:var(--rad);padding:13px 15px;box-shadow:var(--sh);position:relative;overflow:hidden;}
+.kpi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--kc,var(--pr));}
+.kpi-l{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:5px;}
+.kpi-v{font-family:'JetBrains Mono',monospace;font-size:1.12rem;font-weight:700;color:var(--tx);line-height:1.2;}
+.kpi-s{font-size:.61rem;color:var(--mu);margin-top:3px;}
+
+/* ── FORMS ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px;}
+@media(max-width:800px){.two-col{grid-template-columns:1fr;}}
+.frow{display:grid;grid-template-columns:1fr 144px;align-items:center;gap:8px;margin-bottom:8px;}
+.fl{font-size:.8rem;font-weight:500;color:var(--tx);}
+.fs{font-size:.62rem;color:var(--mu);margin-top:1px;}
+.fw{position:relative;}
+.fw .fp{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--mu);font-family:'JetBrains Mono',monospace;font-size:.72rem;pointer-events:none;}
+.fi{width:100%;padding:7px 9px 7px 20px;border:1.5px solid var(--b2);border-radius:7px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--tx);text-align:right;background:var(--s);outline:none;transition:all .15s;}
+.fi:focus{border-color:var(--pr);background:var(--w);box-shadow:0 0 0 3px rgba(13,92,58,.1);}
+.fi.rpr{background:var(--pr3)!important;border-color:var(--pr4)!important;color:var(--pr);font-weight:600;}
+.fi.rok{background:var(--ok2)!important;border-color:rgba(5,150,105,.3)!important;color:var(--ok);font-weight:700;}
+.fi.rwa{background:var(--wa2)!important;border-color:rgba(217,119,6,.3)!important;color:var(--wa);font-weight:600;}
+.fi.rpu{background:var(--pu2)!important;border-color:rgba(124,58,237,.3)!important;color:var(--pu);font-weight:600;}
+.fi.rer{background:var(--er2)!important;border-color:rgba(220,38,38,.3)!important;color:var(--er);font-weight:700;}
+.fdiv{height:1px;background:var(--b1);margin:6px 0 8px;}
+
+/* ── TABLES ── */
+.dtbl{width:100%;border-collapse:collapse;}
+.dtbl thead th{text-align:left;padding:8px 11px;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);border-bottom:2px solid var(--b1);background:var(--s);}
+.dtbl tbody td{padding:9px 11px;font-size:.8rem;border-bottom:1px solid var(--b1);}
+.dtbl tbody tr:last-child td{border-bottom:none;}
+.dtbl tbody tr.best{background:rgba(5,150,105,.04);}
+.dtbl tbody tr:hover{background:var(--s);}
+.mono{font-family:'JetBrains Mono',monospace;}
+.bbest{background:var(--ok2);color:var(--ok);font-size:.58rem;padding:2px 7px;border-radius:999px;font-weight:700;text-transform:uppercase;margin-left:6px;border:1px solid rgba(5,150,105,.2);}
+.rdot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle;}
+
+/* ── VALIDATION ── */
+.vi{display:flex;align-items:flex-start;gap:9px;padding:10px 13px;border-radius:8px;margin-bottom:7px;}
+.vi.ok{background:var(--ok2);border:1px solid rgba(5,150,105,.2);}
+.vi.wa{background:var(--wa2);border:1px solid rgba(217,119,6,.2);}
+.vi.er{background:var(--er2);border:1px solid rgba(220,38,38,.2);}
+.vi-ic{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;flex-shrink:0;margin-top:2px;}
+.vi.ok .vi-ic{background:var(--ok);color:#fff;}
+.vi.wa .vi-ic{background:var(--wa);color:#fff;}
+.vi.er .vi-ic{background:var(--er);color:#fff;}
+.vi-body{flex:1;font-size:.8rem;}
+.vi-body b{display:block;margin-bottom:2px;}
+.vi-body span{font-size:.7rem;opacity:.8;}
+.vi-st{font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:700;margin-left:auto;white-space:nowrap;padding-top:2px;}
+
+/* ── MULTI ── */
+.mgr-h,.mgr-r{display:grid;grid-template-columns:190px 110px repeat(3,1fr);gap:7px;align-items:center;padding:8px 11px;border-radius:7px;font-size:.78rem;}
+.mgr-h{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:4px;}
+.mgr-r{background:var(--s);border:1px solid var(--b1);margin-bottom:5px;}
+.mgr-r:hover{background:var(--pr3);border-color:var(--pr4);}
+
+/* ── RENTAS GRID ── */
+.renta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:14px;}
+.renta-card{background:var(--w);border:1px solid var(--b1);border-radius:var(--rad);box-shadow:var(--sh);overflow:hidden;}
+.renta-card-h{padding:10px 14px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:7px;}
+.renta-card-b{padding:12px 14px;}
+.renta-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--b1);font-size:.8rem;}
+.renta-row:last-child{border-bottom:none;}
+.renta-lbl{color:var(--tx2);}
+.renta-val{font-family:'JetBrains Mono',monospace;font-weight:600;}
+.renta-input{font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:5px 8px;border:1.5px solid var(--b2);border-radius:6px;outline:none;width:140px;text-align:right;color:var(--tx);background:var(--s);transition:all .15s;}
+.renta-input:focus{border-color:var(--pr);background:var(--w);}
+.renta-total{background:var(--pr3);padding:10px 14px;display:flex;justify-content:space-between;font-weight:700;font-size:.82rem;color:var(--pr);}
+
+/* ── HISTORIAL TABLE ── */
+.hist-bar{display:flex;gap:8px;margin-bottom:12px;align-items:center;flex-wrap:wrap;}
+
+/* ── MANUAL ── */
+.manual-section{margin-bottom:22px;}
+.manual-section-title{font-size:.88rem;font-weight:800;color:var(--pr);border-bottom:2px solid var(--pr4);padding-bottom:7px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.manual-step{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.manual-step-num{width:26px;height:26px;border-radius:50%;background:var(--pr);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0;margin-top:1px;}
+.manual-step-body{flex:1;font-size:.82rem;line-height:1.6;color:var(--tx2);}
+.manual-step-body b{color:var(--tx);}
+.manual-tip{background:var(--wa2);border:1px solid rgba(217,119,6,.2);border-radius:8px;padding:10px 13px;font-size:.78rem;color:var(--wa);margin-bottom:8px;}
+.manual-tip b{color:var(--wa);}
+.manual-note{background:var(--pr3);border:1px solid var(--pr4);border-radius:8px;padding:10px 13px;font-size:.78rem;color:var(--pr);margin-bottom:8px;}
+.key-chip{display:inline-block;background:var(--tx);color:#fff;border-radius:5px;padding:1px 7px;font-family:'JetBrains Mono',monospace;font-size:.72rem;margin:0 2px;}
+.field-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-bottom:8px;}
+.field-table th{background:var(--pr3);color:var(--pr);padding:7px 10px;text-align:left;font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;font-weight:700;}
+.field-table td{padding:7px 10px;border-bottom:1px solid var(--b1);vertical-align:top;}
+.field-table tr:last-child td{border-bottom:none;}
+.field-table tr:nth-child(even) td{background:var(--s);}
+.field-tag{display:inline-block;font-size:.64rem;font-weight:700;padding:2px 7px;border-radius:999px;white-space:nowrap;}
+.tag-req{background:var(--er2);color:var(--er);}
+.tag-opt{background:var(--ok2);color:var(--ok);}
+.tag-auto{background:var(--pu2);color:var(--pu);}
+
+/* ── ACTIONS ── */
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;}
+.btn{padding:7px 14px;border-radius:7px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;border:1.5px solid;transition:all .15s;}
+.btn-p{background:var(--pr);border-color:var(--pr);color:#fff;box-shadow:0 2px 8px rgba(13,92,58,.25);}
+.btn-p:hover{background:var(--pr2);}
+.btn-o{background:var(--w);border-color:var(--b2);color:var(--tx2);}
+.btn-o:hover{border-color:var(--pr);color:var(--pr);background:var(--pr3);}
+.btn-sm{padding:5px 10px;font-size:.72rem;}
+
+/* ── PAGES ── */
+.page{display:none;}.page.active{display:block;}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.fa{animation:fu .22s ease both;}
+[data-tip]{position:relative;cursor:help;}
+[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 5px);left:50%;transform:translateX(-50%);background:var(--pr);color:#fff;font-size:.65rem;padding:5px 9px;border-radius:6px;white-space:nowrap;pointer-events:none;z-index:400;font-family:'Outfit',sans-serif;box-shadow:var(--sh2);}
+.footer{background:var(--w);border-top:1px solid var(--b1);padding:9px 18px;font-size:.67rem;color:var(--mu);display:flex;justify-content:space-between;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<!-- ████ LOGIN ████ -->
+<div id="loginWrap">
+  <div class="login-left">
+    <div class="ll-inner">
+      <div class="ll-brand">Trib<em>CL</em> Pro</div>
+      <div class="ll-tagline">Sistema Tributario Chile — Edición 2025</div>
+      <div class="ll-feat"><div class="ll-feat-i">🏛️</div><div class="ll-feat-t"><b>5 Regímenes Oficiales SII</b>14 D3 · 14 D8 · 14 A · Art. 34 · Art. 14 B</div></div>
+      <div class="ll-feat"><div class="ll-feat-i">🏢</div><div class="ll-feat-t"><b>Gestión Multiempresa</b>Compare varias empresas simultáneamente</div></div>
+      <div class="ll-feat"><div class="ll-feat-i">📈</div><div class="ll-feat-t"><b>Rentas Empresariales</b>Control mensual y comparativa anual</div></div>
+      <div class="ll-feat"><div class="ll-feat-i">🔐</div><div class="ll-feat-t"><b>Control de Acceso por Roles</b>Admin · Contador · Solo Lectura</div></div>
+    </div>
+  </div>
+  <div class="login-right">
+    <div class="lr-title">Iniciar Sesión</div>
+    <div class="lr-sub">Ingrese sus credenciales para acceder al sistema</div>
+    <div class="lr-badge">🇨🇱 Año Comercial 2025 · AT 2026 · LIR Ley 21.210</div>
+    <div class="lf"><label>Usuario</label><input type="text" id="lu" placeholder="usuario@empresa.cl" autocomplete="username"></div>
+    <div class="lf">
+      <label>Contraseña</label>
+      <input type="password" id="lp" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+      <div class="lf-err" id="lerr">⚠ Usuario o contraseña incorrectos</div>
+    </div>
+    <button class="l-btn" onclick="doLogin()">Acceder al Sistema →</button>
+    <div class="l-divider"><span>Acceso rápido (seleccione su perfil)</span></div>
+    <div class="l-ucard" onclick="qLogin('admin','admin123')">
+      <div class="l-ucard-ico" style="background:#e6f4ee">👑</div>
+      <div class="l-ucard-info"><b>Administrador</b><span>Acceso total al sistema</span></div>
+      <span class="l-role role-a">Admin</span>
+    </div>
+    <div class="l-ucard" onclick="qLogin('contador','conta456')">
+      <div class="l-ucard-ico" style="background:#dbeafe">📊</div>
+      <div class="l-ucard-info"><b>Contador</b><span>Simulación y exportación</span></div>
+      <span class="l-role role-c">Contador</span>
+    </div>
+    <div class="l-ucard" onclick="qLogin('viewer','view789')">
+      <div class="l-ucard-ico" style="background:#d1fae5">👁️</div>
+      <div class="l-ucard-info"><b>Solo Lectura</b><span>Consulta sin modificar</span></div>
+      <span class="l-role role-v">Viewer</span>
+    </div>
+  </div>
+</div>
+
+<!-- ████ APP ████ -->
+<div id="app" style="display:none;flex-direction:column;">
+  <div class="topbar">
+    <div class="tb-brand">Trib<em>CL</em> Pro<div class="tb-sep"></div><div class="tb-sub">Simulador Tributario Chile</div></div>
+    <div class="tb-pills"><span class="tb-pill">AC 2025</span><span class="tb-pill gold">AT 2026</span></div>
+    <div class="tb-right">
+      <div style="display:flex;align-items:center;gap:7px">
+        <div class="tb-ava" id="tbAva">A</div>
+        <div class="tb-uinfo"><span class="tb-uname" id="tbName">admin</span><span class="tb-urole" id="tbRole">Administrador</span></div>
+      </div>
+      <button class="tb-out" onclick="doLogout()">Cerrar Sesión</button>
+    </div>
+  </div>
+
+  <div class="app-body">
+    <div class="sidebar">
+      <span class="sb-lbl">Simulador</span>
+      <div class="sbi active" onclick="showPg('sim',this)">📊 Simulador Principal</div>
+      <div class="sbi" onclick="showPg('comp',this)">🔄 Comparativa Regímenes</div>
+      <div class="sbi" onclick="showPg('multi',this)">🏢 Multiempresa</div>
+      <div class="sb-div"></div>
+      <span class="sb-lbl">Impuestos</span>
+      <div class="sbi" onclick="showPg('igc',this)">👤 IGC – Socio / Dueño</div>
+      <div class="sbi" onclick="showPg('sii',this)">📄 Formularios SII</div>
+      <div class="sb-div"></div>
+      <span class="sb-lbl">Rentas y Control</span>
+      <div class="sbi" onclick="showPg('rentas',this)">📈 Rentas Empresariales</div>
+      <div class="sbi" onclick="showPg('val',this)">✅ Validaciones</div>
+      <div class="sb-div"></div>
+      <span class="sb-lbl">Sistema</span>
+      <div class="sbi" onclick="showPg('ref',this)">📌 Tablas Referencia</div>
+      <div class="sbi" onclick="showPg('manual',this)">📖 Manual de Usuario</div>
+      <div class="sbi" id="sb-adm" onclick="showPg('adm',this)">⚙️ Administración</div>
+    </div>
+
+    <div class="content">
+      <!-- INFO STRIP -->
+      <div class="istrip">
+        <div class="ii"><div class="ilbl">UF Feb-2025</div><div class="ival">$38.285,53</div></div><div class="isep"></div>
+        <div class="ii"><div class="ilbl">UTM Feb-2025</div><div class="ival">$68.306</div></div><div class="isep"></div>
+        <div class="ii"><div class="ilbl">UTA Anual</div><div class="ival">$819.672</div></div><div class="isep"></div>
+        <div class="ii"><div class="ilbl">Límite Pro-Pyme</div><div class="ival">75.000 UF</div></div><div class="isep"></div>
+        <div class="ii"><div class="ilbl">IGC Máx</div><div class="ival">40%</div></div><div class="isep"></div>
+        <div class="ii"><div class="ilbl">Venc. F22</div><div class="ival">30 Abr 2026</div></div><div class="isep"></div>
+        <div class="ii"><div class="ilbl">Cambio Régimen</div><div class="ival">Ene–Abr 2026</div></div>
+      </div>
+
+      <!-- CO TABS -->
+      <div class="co-bar" id="coBar"></div>
+
+      <!-- ██ PAGE: SIMULADOR ██ -->
+      <div class="page active fa" id="page-sim">
+        <div class="co-info">
+          <div class="cof"><label>Razón Social</label><input id="ci-nom" placeholder="Empresa ABC SpA" oninput="uco()"></div>
+          <div class="cof"><label>RUT</label><input id="ci-rut" placeholder="76.123.456-7" oninput="uco()"></div>
+          <div class="cof"><label>Giro / Actividad</label><input id="ci-giro" placeholder="Comercio" oninput="uco()"></div>
+          <div class="cof"><label>Tipo Contribuyente</label><select id="ci-tipo" onchange="uco()"><option>SA / SpA / Ltda.</option><option>EIRL</option><option>Persona Natural 1ª Cat.</option><option>Comunidad</option><option>Fundación / Corporación</option></select></div>
+          <div class="cof"><label>Año Comercial</label><select id="ci-ac"><option>2025</option><option>2024</option><option>2023</option></select></div>
+          <div class="cof"><label>Año Tributario</label><select id="ci-at"><option>2026</option><option>2025</option><option>2024</option></select></div>
+        </div>
+        <div class="rg" id="rgrid"></div>
+        <div class="krow">
+          <div class="kpi" style="--kc:var(--pr)"><div class="kpi-l">Base Imponible</div><div class="kpi-v" id="k-base">$0</div><div class="kpi-s" id="k-base-s">—</div></div>
+          <div class="kpi" style="--kc:var(--wa)"><div class="kpi-l">Impuesto 1ª Categoría</div><div class="kpi-v" id="k-imp">$0</div><div class="kpi-s" id="k-imp-s">Tasa 0%</div></div>
+          <div class="kpi" style="--kc:var(--ok)"><div class="kpi-l">Líquido a Pagar</div><div class="kpi-v" id="k-pagar">$0</div><div class="kpi-s" id="k-pagar-s">—</div></div>
+          <div class="kpi" style="--kc:var(--pu)"><div class="kpi-l">Crédito Socios</div><div class="kpi-v" id="k-cred">$0</div><div class="kpi-s" id="k-cred-s">—</div></div>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <div class="card-h"><div class="card-t">📊 Base Imponible e Ingresos</div></div>
+            <div class="card-b">
+              <div class="frow"><div><div class="fl" data-tip="Ingresos efectivamente percibidos en AC 2025">Ingresos Percibidos</div><div class="fs">Ventas, servicios y otros</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="f-ing" value="0" min="0" oninput="calc()"></div></div>
+              <div class="frow"><div><div class="fl" data-tip="Gastos efectivamente pagados en el período">Gastos Pagados</div><div class="fs">Costos, remuneraciones, arriendos</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="f-gas" value="0" min="0" oninput="calc()"></div></div>
+              <div class="frow" id="row-util"><div><div class="fl" data-tip="Resultado contable del Estado de Resultados">Utilidad del Balance</div><div class="fs">Solo para 14 A y 14 B</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="f-util" value="0" min="0" oninput="calc()"></div></div>
+              <div class="frow" id="row-aval" style="display:none"><div><div class="fl" data-tip="Avalúo fiscal del bien para renta presunta">Tasación / Avalúo Fiscal</div><div class="fs">Art. 34 – base presunta</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="f-aval" value="0" min="0" oninput="calc()"></div></div>
+              <div class="fdiv"></div>
+              <div class="frow"><div><div class="fl" data-tip="Gastos rechazados art. 21, retiros presuntos">Agregados</div><div class="fs">Gastos no deducibles LIR</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="f-agr" value="0" min="0" oninput="calc()"></div></div>
+              <div class="frow"><div><div class="fl" data-tip="Ingresos no renta, rentas exentas">Deducciones</div><div class="fs">Permitidas por LIR</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="f-ded" value="0" min="0" oninput="calc()"></div></div>
+              <div class="fdiv"></div>
+              <div class="frow"><div><div class="fl" style="color:var(--pr);font-weight:700">Base Imponible</div><div class="fs">Calculado automáticamente</div></div><div class="fw"><span class="fp" style="color:var(--pr)">$</span><input type="text" class="fi rpr" id="r-base" readonly></div></div>
+              <div class="frow"><div><div class="fl">Tasa Aplicable</div></div><div class="fw"><span class="fp" style="left:6px">%</span><input type="text" class="fi rpr" id="r-tasa" readonly style="padding-left:20px"></div></div>
+              <div class="frow"><div><div class="fl" data-tip="Solo 14 A: rebaja 50% RLI con tope 5.000 UF">Incentivo Inversión (14 A)</div><div class="fs" id="inv-desc">Rebaja 50% RLI – tope 5.000 UF</div></div><div class="fw"><span class="fp">$</span><input type="text" class="fi rpr" id="r-inv" readonly></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><div class="card-t">🏷️ Créditos y Resultado Final</div></div>
+            <div class="card-b">
+              <div class="frow"><div><div class="fl" data-tip="Art. 33 bis – 6% inversión activo fijo. Máx 500 UTM">Crédito Art. 33 bis</div><div class="fs">Activo fijo – 6% inversión</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="c-33" value="0" min="0" oninput="calc()"></div></div>
+              <div class="frow"><div><div class="fl" data-tip="SENCE – Capacitación. Máx 1% planilla o 9 UTM">Crédito SENCE</div><div class="fs">Capacitación laboral</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="c-sen" value="0" min="0" oninput="calc()"></div></div>
+              <div class="frow"><div><div class="fl" data-tip="Art. 31 N°7 – Donaciones sociales / culturales">Crédito Donaciones</div><div class="fs">Fines sociales y culturales</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="c-don" value="0" min="0" oninput="calc()"></div></div>
+              <div class="frow"><div><div class="fl" data-tip="Contribuciones de bienes raíces no habitacionales">Crédito Contribuciones</div><div class="fs">Bienes raíces – BNRC</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="c-con" value="0" min="0" oninput="calc()"></div></div>
+              <div class="frow"><div><div class="fl" data-tip="Pagos Provisionales Mensuales acumulados – art. 84">PPM Acumulados</div><div class="fs">Pagos F29 del período</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="c-ppm" value="0" min="0" oninput="calc()"></div></div>
+              <div class="frow"><div><div class="fl" data-tip="Retenciones practicadas por terceros (bancos, etc.)">Retenciones</div><div class="fs">Impuesto retenido</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="c-ret" value="0" min="0" oninput="calc()"></div></div>
+              <div class="fdiv"></div>
+              <div class="frow"><div><div class="fl">Total Créditos</div></div><div class="fw"><span class="fp">$</span><input type="text" class="fi rpu" id="r-cred" readonly></div></div>
+              <div class="frow"><div><div class="fl">Impuesto Determinado</div></div><div class="fw"><span class="fp">$</span><input type="text" class="fi rwa" id="r-impd" readonly></div></div>
+              <div class="frow"><div><div class="fl" style="font-weight:700;font-size:.88rem">⚡ Impuesto Líquido a Pagar</div><div class="fs">MAX(0, Determinado − Créditos)</div></div><div class="fw"><span class="fp">$</span><input type="text" class="fi rok" id="r-pagar" readonly style="font-size:.88rem;font-weight:700"></div></div>
+              <div class="frow"><div><div class="fl">Crédito para Socios</div><div class="fs" id="csd">100% del impuesto determinado</div></div><div class="fw"><span class="fp">$</span><input type="text" class="fi rpu" id="r-crsoc" readonly></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="actions" id="actBar">
+          <button class="btn btn-p" onclick="loadEj()">📂 Cargar Ejemplo</button>
+          <button class="btn btn-o" onclick="limpiar()">🗑️ Limpiar</button>
+          <button class="btn btn-o" onclick="exportCSV()">⬇ Exportar CSV</button>
+          <button class="btn btn-o" onclick="showPg('comp',null)">🔄 Ver Comparativa</button>
+        </div>
+      </div>
+
+      <!-- ██ PAGE: COMPARATIVA ██ -->
+      <div class="page fa" id="page-comp">
+        <div class="card" style="margin-bottom:13px">
+          <div class="card-h"><div class="card-t">🔄 Comparativa — 5 Regímenes Oficiales SII</div></div>
+          <div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Régimen</th><th>Tasa</th><th>Base Imp.</th><th>Imp.Det.</th><th>Créditos</th><th>Imp.Líquido</th><th>Créd.Socios</th><th>vs Mejor</th></tr></thead><tbody id="cmpB"></tbody></table></div>
+        </div>
+        <div class="card"><div class="card-h"><div class="card-t">💡 Análisis y Recomendación</div></div><div class="card-b" id="cmpA"></div></div>
+      </div>
+
+      <!-- ██ PAGE: MULTI ██ -->
+      <div class="page fa" id="page-multi">
+        <div class="card">
+          <div class="card-h"><div class="card-t">🏢 Consolidado Multiempresa</div></div>
+          <div class="card-b">
+            <div class="mgr-h"><span>Empresa / RUT</span><span>Régimen</span><span>Base Imponible</span><span>Imp. Líquido</span><span>Créd. Socios</span></div>
+            <div id="mgrid"></div>
+            <div style="margin-top:11px;padding-top:9px;border-top:1px solid var(--b1);font-size:.78rem;display:flex;gap:16px">
+              Empresas: <b id="mg-n">0</b> &nbsp;|&nbsp; Total Impuesto: <b id="mg-i" class="mono" style="color:var(--er)">$0</b> &nbsp;|&nbsp; Total Créd.Socios: <b id="mg-c" class="mono" style="color:var(--pu)">$0</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ██ PAGE: IGC ██ -->
+      <div class="page fa" id="page-igc">
+        <div class="two-col" style="margin-bottom:13px">
+          <div class="card">
+            <div class="card-h"><div class="card-t">👤 Datos del Socio / Propietario</div></div>
+            <div class="card-b">
+              <div class="frow"><div><div class="fl">Renta del Trabajo (Sueldos)</div><div class="fs">Anual bruta</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="ig-sue" value="0" oninput="calcIGC()"></div></div>
+              <div class="frow"><div><div class="fl">Retiros / Dividendos</div><div class="fs">Retirados de la empresa</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="ig-ret" value="0" oninput="calcIGC()"></div></div>
+              <div class="frow"><div><div class="fl">Otras Rentas</div><div class="fs">Arriendos, capitales mobiliarios</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="ig-otr" value="0" oninput="calcIGC()"></div></div>
+              <div class="frow"><div><div class="fl">Cotizaciones Previsionales</div><div class="fs">AFP + Salud – deducibles</div></div><div class="fw"><span class="fp">$</span><input type="number" class="fi" id="ig-cot" value="0" oninput="calcIGC()"></div></div>
+              <div class="frow"><div><div class="fl">% Participación Empresa</div><div class="fs">Para asignar crédito 1ª Cat.</div></div><div class="fw"><span class="fp" style="left:6px">%</span><input type="number" class="fi" id="ig-pct" value="100" min="0" max="100" oninput="calcIGC()" style="padding-left:20px"></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><div class="card-t">📊 Resultado IGC AT 2026</div></div>
+            <div class="card-b">
+              <div class="frow"><div><div class="fl">Renta Bruta Global</div></div><div class="fw"><span class="fp">$</span><input type="text" class="fi rpr" id="ig-rb" readonly></div></div>
+              <div class="frow"><div><div class="fl">Crédito 1ª Categoría</div><div class="fs">Del impuesto empresa</div></div><div class="fw"><span class="fp">$</span><input type="text" class="fi rpu" id="ig-c1" readonly></div></div>
+              <div class="frow"><div><div class="fl">Tramo Marginal</div></div><div class="fw"><span class="fp" style="left:6px">%</span><input type="text" class="fi rwa" id="ig-trm" readonly style="padding-left:20px"></div></div>
+              <div class="frow"><div><div class="fl">IGC Determinado</div></div><div class="fw"><span class="fp">$</span><input type="text" class="fi rwa" id="ig-det" readonly></div></div>
+              <div class="frow"><div><div class="fl" style="font-weight:700;font-size:.88rem">⚡ IGC Líquido a Pagar</div></div><div class="fw"><span class="fp">$</span><input type="text" class="fi rok" id="ig-liq" readonly style="font-size:.88rem;font-weight:700"></div></div>
+              <div class="frow"><div><div class="fl">Tasa Efectiva</div></div><div class="fw"><span class="fp" style="left:6px">%</span><input type="text" class="fi rpr" id="ig-tef" readonly style="padding-left:20px"></div></div>
+              <div class="frow"><div><div class="fl" style="color:var(--er)">Carga Total Sistema</div><div class="fs">1ª Cat. + IGC</div></div><div class="fw"><span class="fp">$</span><input type="text" class="fi rer" id="ig-tot" readonly></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card"><div class="card-h"><div class="card-t">📋 Tabla IGC AC 2025 · AT 2026</div></div>
+          <div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Tramo</th><th>Desde (Anual)</th><th>Hasta (Anual)</th><th>Tasa Marginal</th><th>Factor Rebaja</th><th>UTA Ref.</th></tr></thead><tbody id="igcTB"></tbody></table></div>
+        </div>
+      </div>
+
+      <!-- ██ PAGE: FORMULARIOS SII ██ -->
+      <div class="page fa" id="page-sii">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-h"><div class="card-t">📄 F22 – Declaración Renta AC 2025 · AT 2026</div></div>
+            <div class="card-b">
+              <div style="display:grid;gap:6px;font-size:.8rem">
+                <div style="display:flex;justify-content:space-between;padding:8px 11px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><span style="color:var(--tx2)">Línea 1 – Renta Líquida Imponible</span><span class="mono" id="f22l1">$0</span></div>
+                <div style="display:flex;justify-content:space-between;padding:8px 11px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><span style="color:var(--tx2)">Línea 18 – Impuesto 1ª Categoría</span><span class="mono" id="f22l18">$0</span></div>
+                <div style="display:flex;justify-content:space-between;padding:8px 11px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><span style="color:var(--tx2)">Línea 30 – Total Créditos</span><span class="mono" id="f22l30">$0</span></div>
+                <div style="display:flex;justify-content:space-between;padding:8px 11px;background:var(--wa2);border-radius:7px;border:1px solid rgba(217,119,6,.2)"><span style="color:var(--wa);font-weight:700">Línea 58 – PPM Acumulados</span><span class="mono" id="f22l58">$0</span></div>
+                <div style="display:flex;justify-content:space-between;padding:10px 11px;background:var(--ok2);border-radius:7px;border:1px solid rgba(5,150,105,.2)"><span style="color:var(--ok);font-weight:700">Línea 64 – Impuesto a Pagar / Devolución</span><span class="mono" style="font-weight:700" id="f22l64">$0</span></div>
+              </div>
+              <div style="margin-top:11px;padding:9px;background:var(--pr3);border-radius:7px;border:1px solid var(--pr4);font-size:.72rem;color:var(--pr)">ℹ️ Referencial. Use el <b>F22 oficial en sii.cl</b>. Plazo: <b>30 de Abril 2026</b>.</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><div class="card-t">📄 F29 – PPM por Régimen</div></div>
+            <div class="card-b">
+              <div style="display:grid;gap:7px;font-size:.79rem">
+                <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><span class="rdot" style="background:var(--r1)"></span><b>14 D3 Pro-Pyme General</b><br><span style="color:var(--mu)">PPM: <b class="mono">0,25%</b> sobre ingresos. Si &gt;50.000 UF → <b class="mono">0,5%</b></span></div>
+                <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><span class="rdot" style="background:var(--r2)"></span><b>14 D8 Transparente</b><br><span style="color:var(--mu)">PPM: <b class="mono">0,2%</b> sobre ingresos. Si &gt;50.000 UF → <b class="mono">0,5%</b></span></div>
+                <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><span class="rdot" style="background:var(--r3)"></span><b>14 A Semi-Integrado</b><br><span style="color:var(--mu)">PPM variable histórico (mín. <b class="mono">0,3%</b>)</span></div>
+                <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><span class="rdot" style="background:var(--r4)"></span><b>Art. 34 Renta Presunta</b><br><span style="color:var(--mu)">PPM sobre renta presunta: <b class="mono">1%</b></span></div>
+                <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><span class="rdot" style="background:var(--r5)"></span><b>Art. 14 B</b><br><span style="color:var(--mu)">Sin PPM por distribuciones a propietarios</span></div>
+              </div>
+              <div style="margin-top:9px;padding:7px 11px;background:var(--wa2);border-radius:6px;border:1px solid rgba(217,119,6,.2);font-size:.7rem;color:var(--wa);font-weight:600">⏰ Vencimiento F29: día <b>12</b> de cada mes.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ██ PAGE: RENTAS EMPRESARIALES ██ -->
+      <div class="page fa" id="page-rentas">
+        <div class="card" style="margin-bottom:14px">
+          <div class="card-h">
+            <div class="card-t">📈 Rentas Empresariales — Control Mensual AC 2025</div>
+            <div style="display:flex;gap:7px">
+              <button class="btn btn-o btn-sm" onclick="limpiarRentas()">🗑️ Limpiar</button>
+              <button class="btn btn-o btn-sm" onclick="exportRentas()">⬇ Exportar</button>
+            </div>
+          </div>
+          <div class="card-b">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px;margin-bottom:14px">
+              <div class="kpi" style="--kc:var(--pr)"><div class="kpi-l">Total Ingresos</div><div class="kpi-v" id="r-tot-ing">$0</div><div class="kpi-s">Acum. 12 meses</div></div>
+              <div class="kpi" style="--kc:var(--er)"><div class="kpi-l">Total Gastos</div><div class="kpi-v" id="r-tot-gas">$0</div><div class="kpi-s">Acum. 12 meses</div></div>
+              <div class="kpi" style="--kc:var(--ok)"><div class="kpi-l">Resultado Bruto</div><div class="kpi-v" id="r-tot-res">$0</div><div class="kpi-s">Ing. − Gastos</div></div>
+              <div class="kpi" style="--kc:var(--wa)"><div class="kpi-l">Total PPM</div><div class="kpi-v" id="r-tot-ppm">$0</div><div class="kpi-s">Pagos provisionales</div></div>
+              <div class="kpi" style="--kc:var(--pu)"><div class="kpi-l">Margen Promedio</div><div class="kpi-v" id="r-tot-mrg">0%</div><div class="kpi-s">Resultado / Ingresos</div></div>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="dtbl" id="rentaTable">
+                <thead>
+                  <tr>
+                    <th>Mes</th>
+                    <th>Ingresos</th>
+                    <th>Gastos</th>
+                    <th>Resultado</th>
+                    <th>Margen</th>
+                    <th>PPM Pago</th>
+                    <th>IVA Débito</th>
+                    <th>IVA Crédito</th>
+                    <th>IVA Neto</th>
+                    <th>Retenciones</th>
+                    <th>Observaciones</th>
+                  </tr>
+                </thead>
+                <tbody id="rentaBody"></tbody>
+                <tfoot id="rentaFoot"></tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <div class="card-h"><div class="card-t">📊 Resumen por Trimestre</div></div>
+            <div class="card-b" style="padding:0"><table class="dtbl"><thead><tr><th>Trimestre</th><th>Ingresos</th><th>Gastos</th><th>Resultado</th><th>Margen</th></tr></thead><tbody id="trimBody"></tbody></table></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><div class="card-t">⚡ Proyección Anual</div></div>
+            <div class="card-b" id="proyBody">
+              <div style="color:var(--mu);font-size:.82rem">Ingrese datos de al menos un mes para ver la proyección anual.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ██ PAGE: VALIDACIONES ██ -->
+      <div class="page fa" id="page-val">
+        <div class="card" style="margin-bottom:13px"><div class="card-h"><div class="card-t">✅ Validaciones Tributarias</div></div><div class="card-b" id="valBody"></div></div>
+        <div class="card"><div class="card-h"><div class="card-t">📌 Obligaciones y Fechas AT 2026</div></div>
+          <div class="card-b">
+            <div class="vi wa"><div class="vi-ic">!</div><div class="vi-body"><b>F22 – Declaración Anual de Renta</b><span>Plazo: 30 de Abril 2026. Verificar prórroga en sii.cl.</span></div></div>
+            <div class="vi wa"><div class="vi-ic">!</div><div class="vi-body"><b>F29 – Pago Provisional Mensual</b><span>Declarar y pagar hasta el día 12 de cada mes.</span></div></div>
+            <div class="vi ok"><div class="vi-ic">✓</div><div class="vi-body"><b>Contabilidad Simplificada</b><span>14 D3 y 14 D8 pueden usar contabilidad simplificada (Ley 21.210).</span></div></div>
+            <div class="vi ok"><div class="vi-ic">✓</div><div class="vi-body"><b>14 D8 – Empresa exenta 1ª Categoría</b><span>Los socios incorporan la renta a su IGC en el mismo año en que se genera.</span></div></div>
+            <div class="vi wa"><div class="vi-ic">!</div><div class="vi-body"><b>Cambio de Régimen</b><span>Entre 1 enero y 30 abril. Para volver a 14 D8 tras salir se requieren 5 años.</span></div></div>
+            <div class="vi wa"><div class="vi-ic">!</div><div class="vi-body"><b>Renta Presunta – Límites</b><span>Agricultura: 9.000 UF · Transporte: 5.000 UF · Minería: 17.000 UF.</span></div></div>
+            <div class="vi ok"><div class="vi-ic">✓</div><div class="vi-body"><b>14 A – Incentivo Inversión</b><span>Rebaja del 50% de la RLI (tope 5.000 UF) antes de aplicar la tasa del 27%.</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ██ PAGE: REFERENCIA ██ -->
+      <div class="page fa" id="page-ref">
+        <div class="two-col">
+          <div class="card">
+            <div class="card-h"><div class="card-t">📋 5 Regímenes Tributarios Vigentes</div></div>
+            <div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Art.</th><th>Nombre</th><th>Tasa</th><th>Créd.Socio</th><th>Límite</th><th>Contab.</th></tr></thead><tbody>
+              <tr><td><span class="rdot" style="background:var(--r1)"></span><b>14 D N°3</b></td><td>Pro-Pyme General</td><td class="mono">12,5%</td><td class="mono">100%</td><td class="mono">75.000 UF</td><td>Completa / Simple</td></tr>
+              <tr><td><span class="rdot" style="background:var(--r2)"></span><b>14 D N°8</b></td><td>Pro-Pyme Transparente</td><td class="mono">0%</td><td class="mono">—</td><td class="mono">75.000 UF</td><td>Simplificada</td></tr>
+              <tr><td><span class="rdot" style="background:var(--r3)"></span><b>14 A</b></td><td>General Semi-Integrado</td><td class="mono">27%</td><td class="mono">65%</td><td class="mono">Sin límite</td><td>Completa</td></tr>
+              <tr><td><span class="rdot" style="background:var(--r4)"></span><b>Art. 34</b></td><td>Renta Presunta</td><td class="mono">10%</td><td class="mono">100%</td><td class="mono">Por rubro</td><td>Simplificada</td></tr>
+              <tr><td><span class="rdot" style="background:var(--r5)"></span><b>14 B</b></td><td>No sujetos Art. 14</td><td class="mono">27%</td><td class="mono">0%</td><td class="mono">Sin límite</td><td>Completa</td></tr>
+            </tbody></table></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><div class="card-t">📋 Tabla IGC AT 2026</div></div>
+            <div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Tramo</th><th>Desde</th><th>Hasta</th><th>Tasa</th><th>Rebaja</th></tr></thead><tbody>
+              <tr><td>1°</td><td class="mono">$0</td><td class="mono">$11.046.078</td><td class="mono">0%</td><td class="mono">$0</td></tr>
+              <tr><td>2°</td><td class="mono">$11.046.079</td><td class="mono">$24.546.840</td><td class="mono">4%</td><td class="mono">$441.843</td></tr>
+              <tr><td>3°</td><td class="mono">$24.546.841</td><td class="mono">$40.911.400</td><td class="mono">8%</td><td class="mono">$1.423.117</td></tr>
+              <tr><td>4°</td><td class="mono">$40.911.401</td><td class="mono">$57.276.720</td><td class="mono">13,5%</td><td class="mono">$3.673.846</td></tr>
+              <tr><td>5°</td><td class="mono">$57.276.721</td><td class="mono">$73.641.960</td><td class="mono">23%</td><td class="mono">$9.115.957</td></tr>
+              <tr><td>6°</td><td class="mono">$73.641.961</td><td class="mono">$98.189.280</td><td class="mono">30,4%</td><td class="mono">$14.565.851</td></tr>
+              <tr><td>7°</td><td class="mono">$98.189.281</td><td class="mono">$245.473.200</td><td class="mono">35%</td><td class="mono">$19.077.158</td></tr>
+              <tr><td>8°</td><td class="mono">$245.473.201</td><td class="mono">∞</td><td class="mono">40%</td><td class="mono">$31.351.019</td></tr>
+            </tbody></table></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:13px">
+          <div class="card-h"><div class="card-t">📋 Valores Tributarios AC 2025 · AT 2026</div></div>
+          <div class="card-b"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:9px">
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">UF Enero 2025</div><div class="mono">$38.147,26</div></div>
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">UTM Febrero 2025</div><div class="mono">$68.306</div></div>
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">UTA 2025</div><div class="mono">$819.672</div></div>
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">Límite Crédito 33 bis</div><div class="mono">500 UTM=$34.153.000</div></div>
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">Límite Pro-Pyme</div><div class="mono">75.000 UF≈$2.871MM</div></div>
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">Exento IGC</div><div class="mono">$11.046.078</div></div>
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">Incentivo Inversión 14A</div><div class="mono">50% RLI tope 5.000 UF</div></div>
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">Presunta Agricultura</div><div class="mono">9.000 UF ingresos</div></div>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- ██ PAGE: MANUAL ██ -->
+      <div class="page fa" id="page-manual">
+        <div class="card" style="margin-bottom:14px">
+          <div class="card-h">
+            <div class="card-t">📖 Manual de Usuario — TribCL Pro 2025</div>
+            <button class="btn btn-o btn-sm" onclick="window.print()">🖨️ Imprimir</button>
+          </div>
+          <div class="card-b">
+
+            <div class="manual-section">
+              <div class="manual-section-title">🔐 1. Acceso al Sistema</div>
+              <div class="manual-step"><div class="manual-step-num">1</div><div class="manual-step-body">Abra el archivo <b>TribCL_Pro_2025.html</b> en su navegador (Chrome, Edge o Firefox recomendados).</div></div>
+              <div class="manual-step"><div class="manual-step-num">2</div><div class="manual-step-body">En la pantalla de inicio verá el formulario de login. Haga clic en su perfil en los <b>accesos rápidos</b> (Administrador, Contador o Solo Lectura) o escriba su usuario y contraseña manualmente.</div></div>
+              <div class="manual-step"><div class="manual-step-num">3</div><div class="manual-step-body">Presione <span class="key-chip">Enter</span> o el botón <b>"Acceder al Sistema"</b>.</div></div>
+              <div class="manual-note">ℹ️ <b>Roles disponibles:</b> Admin (acceso total), Contador (simulación y exportación), Viewer (solo lectura sin edición).</div>
+            </div>
+
+            <div class="manual-section">
+              <div class="manual-section-title">🏢 2. Datos de la Empresa</div>
+              <div class="manual-step"><div class="manual-step-num">1</div><div class="manual-step-body">Al ingresar, verá una barra de datos en la parte superior del simulador. Complete los campos de <b>Razón Social, RUT, Giro, Tipo de Contribuyente, Año Comercial y Año Tributario</b>.</div></div>
+              <div class="manual-step"><div class="manual-step-num">2</div><div class="manual-step-body">Para agregar una segunda empresa, haga clic en <b>"＋ Nueva Empresa"</b>. Puede tener varias empresas abiertas y cambiar entre ellas con las pestañas superiores.</div></div>
+              <table class="field-table">
+                <thead><tr><th>Campo</th><th>Descripción</th><th>Obligatorio</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Razón Social</b></td><td>Nombre legal de la empresa</td><td><span class="field-tag tag-req">Requerido</span></td></tr>
+                  <tr><td><b>RUT</b></td><td>RUT de la empresa (ej: 76.123.456-7)</td><td><span class="field-tag tag-opt">Opcional</span></td></tr>
+                  <tr><td><b>Giro</b></td><td>Actividad económica principal</td><td><span class="field-tag tag-opt">Opcional</span></td></tr>
+                  <tr><td><b>Tipo Contribuyente</b></td><td>Forma legal (SA, SpA, EIRL, etc.)</td><td><span class="field-tag tag-req">Requerido</span></td></tr>
+                  <tr><td><b>Año Comercial</b></td><td>Período que se está declarando (2025)</td><td><span class="field-tag tag-req">Requerido</span></td></tr>
+                  <tr><td><b>Año Tributario</b></td><td>Año en que se presenta (2026)</td><td><span class="field-tag tag-auto">Automático</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="manual-section">
+              <div class="manual-section-title">🏛️ 3. Selección de Régimen Tributario</div>
+              <div class="manual-step"><div class="manual-step-num">1</div><div class="manual-step-body">Haga clic en una de las <b>5 tarjetas de régimen</b>. La tarjeta seleccionada se resalta en verde.</div></div>
+              <table class="field-table">
+                <thead><tr><th>Régimen</th><th>Cuándo usar</th><th>Tasa</th></tr></thead>
+                <tbody>
+                  <tr><td><b>14 D3 Pro-Pyme General</b></td><td>PyME con ventas hasta 75.000 UF, contabilidad simplificada</td><td class="mono">12,5%</td></tr>
+                  <tr><td><b>14 D8 Transparente</b></td><td>PyME donde los socios prefieren tributar directamente en IGC</td><td class="mono">0%</td></tr>
+                  <tr><td><b>14 A Semi-Integrado</b></td><td>Empresas grandes sin límite de ventas, contabilidad completa</td><td class="mono">27%</td></tr>
+                  <tr><td><b>Art. 34 Presunta</b></td><td>Solo Agricultura, Transporte o Minería dentro de límites</td><td class="mono">10%</td></tr>
+                  <tr><td><b>14 B No sujetos</b></td><td>Corporaciones, Fundaciones, organismos del Estado</td><td class="mono">27%</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="manual-section">
+              <div class="manual-section-title">💰 4. Ingreso de Datos — Columna Izquierda</div>
+              <div class="manual-step"><div class="manual-step-num">1</div><div class="manual-step-body">En la tarjeta <b>"Base Imponible e Ingresos"</b>, ingrese los montos en pesos chilenos sin puntos ni comas.</div></div>
+              <table class="field-table">
+                <thead><tr><th>Campo</th><th>Qué ingresar</th><th>Régimen</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Ingresos Percibidos</b></td><td>Total ventas + servicios + otros ingresos del período</td><td>14 D3, 14 D8</td></tr>
+                  <tr><td><b>Gastos Pagados</b></td><td>Costos + remuneraciones + arriendos + gastos operativos</td><td>14 D3, 14 D8</td></tr>
+                  <tr><td><b>Utilidad del Balance</b></td><td>Resultado del Estado de Resultados contable</td><td>14 A, 14 B</td></tr>
+                  <tr><td><b>Tasación / Avalúo</b></td><td>Avalúo fiscal del bien raíz o valor tasado del activo</td><td>Art. 34</td></tr>
+                  <tr><td><b>Agregados</b></td><td>Gastos rechazados (art. 21), retiros presuntos</td><td>Todos</td></tr>
+                  <tr><td><b>Deducciones</b></td><td>Ingresos no renta, rentas exentas permitidas por LIR</td><td>Todos</td></tr>
+                </tbody>
+              </table>
+              <div class="manual-tip">💡 <b>Tip:</b> Use el botón <b>"📂 Cargar Ejemplo"</b> para ver todos los campos completados con datos de muestra y entender qué va en cada lugar.</div>
+            </div>
+
+            <div class="manual-section">
+              <div class="manual-section-title">🏷️ 5. Créditos Tributarios — Columna Derecha</div>
+              <table class="field-table">
+                <thead><tr><th>Crédito</th><th>Descripción</th><th>Límite</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Art. 33 bis</b></td><td>6% de la inversión en activos fijos nuevos o usados</td><td>Máx 500 UTM</td></tr>
+                  <tr><td><b>SENCE</b></td><td>Cursos de capacitación para trabajadores</td><td>1% planilla o 9 UTM</td></tr>
+                  <tr><td><b>Donaciones</b></td><td>Donaciones a instituciones con fines sociales, culturales</td><td>Según tipo</td></tr>
+                  <tr><td><b>Contribuciones</b></td><td>Contribuciones pagadas de bienes raíces no habitacionales</td><td>Hasta impuesto</td></tr>
+                  <tr><td><b>PPM Acumulados</b></td><td>Total de Pagos Provisionales Mensuales pagados en el año</td><td>Sin límite</td></tr>
+                  <tr><td><b>Retenciones</b></td><td>Impuesto retenido por bancos, notarías y otros terceros</td><td>Sin límite</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="manual-section">
+              <div class="manual-section-title">📈 6. Rentas Empresariales — Control Mensual</div>
+              <div class="manual-step"><div class="manual-step-num">1</div><div class="manual-step-body">Vaya a <b>"Rentas Empresariales"</b> en el menú lateral izquierdo.</div></div>
+              <div class="manual-step"><div class="manual-step-num">2</div><div class="manual-step-body">Verá una tabla con los <b>12 meses del año</b>. Ingrese mes a mes: Ingresos, Gastos, PPM pagado, IVA Débito, IVA Crédito y Retenciones.</div></div>
+              <div class="manual-step"><div class="manual-step-num">3</div><div class="manual-step-body">El sistema calcula automáticamente el <b>Resultado mensual, Margen, IVA Neto</b> y muestra totales acumulados en la parte superior.</div></div>
+              <div class="manual-step"><div class="manual-step-num">4</div><div class="manual-step-body">Al pie verá el <b>Resumen por Trimestre</b> y la <b>Proyección Anual</b> en base a los meses ingresados.</div></div>
+              <div class="manual-note">ℹ️ Los totales de Ingresos y PPM de esta sección se pueden usar como referencia para completar el Simulador Principal.</div>
+            </div>
+
+            <div class="manual-section">
+              <div class="manual-section-title">🔄 7. Otras Funciones Clave</div>
+              <div class="manual-step"><div class="manual-step-num">1</div><div class="manual-step-body"><b>Comparativa Regímenes:</b> Muestra automáticamente cuánto pagaría en cada uno de los 5 regímenes con los datos actuales, indicando la mejor opción.</div></div>
+              <div class="manual-step"><div class="manual-step-num">2</div><div class="manual-step-body"><b>IGC Socio/Dueño:</b> Calcule el impuesto personal del dueño integrando el crédito que le traspasa la empresa.</div></div>
+              <div class="manual-step"><div class="manual-step-num">3</div><div class="manual-step-body"><b>Formularios SII:</b> Vista referencial de las líneas clave del F22 y tasas de PPM del F29 por régimen.</div></div>
+              <div class="manual-step"><div class="manual-step-num">4</div><div class="manual-step-body"><b>Exportar CSV:</b> Descarga todos los datos de la empresa activa en formato compatible con Excel.</div></div>
+              <div class="manual-tip">⚠️ <b>Importante:</b> Este simulador es de uso referencial. Los cálculos definitivos deben ser validados por un <b>contador o asesor tributario certificado</b>. El F22 oficial se presenta en <b>sii.cl</b>.</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ██ PAGE: ADMINISTRACIÓN ██ -->
+      <div class="page fa" id="page-adm">
+        <div class="card" style="margin-bottom:13px">
+          <div class="card-h"><div class="card-t">⚙️ Gestión de Usuarios y Roles</div></div>
+          <div class="card-b">
+            <div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Usuario</th><th>Nombre</th><th>Rol</th><th>Editar</th><th>Exportar</th><th>Admin</th></tr></thead><tbody>
+              <tr><td class="mono">admin</td><td>Administrador</td><td><span class="l-role role-a">Admin</span></td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td></tr>
+              <tr><td class="mono">contador</td><td>Contador</td><td><span class="l-role role-c">Contador</span></td><td style="color:var(--ok)">✓</td><td style="color:var(--ok)">✓</td><td style="color:var(--er)">✗</td></tr>
+              <tr><td class="mono">viewer</td><td>Solo Lectura</td><td><span class="l-role role-v">Viewer</span></td><td style="color:var(--er)">✗</td><td style="color:var(--er)">✗</td><td style="color:var(--er)">✗</td></tr>
+            </tbody></table></div>
+            <div style="margin-top:12px;padding:10px;background:var(--pr3);border-radius:7px;border:1px solid var(--pr4);font-size:.76rem;color:var(--pr)">ℹ️ Las contraseñas no se muestran por seguridad. Para cambiarlas edite el archivo directamente o contáctese con el administrador del sistema.</div>
+          </div>
+        </div>
+        <div class="card"><div class="card-h"><div class="card-t">📊 Sesión Actual</div></div>
+          <div class="card-b"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;font-size:.8rem">
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">Usuario Activo</div><b id="adm-u">—</b></div>
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">Rol</div><b id="adm-r">—</b></div>
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">Empresas Activas</div><b id="adm-c">0</b></div>
+            <div style="padding:10px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><div style="font-size:.59rem;color:var(--mu);margin-bottom:3px">Versión</div><b>TribCL Pro 2025.1</b></div>
+          </div></div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /app-body -->
+  <div class="footer">
+    <span><b>TribCL Pro</b> v2025.1 · AC 2025 · AT 2026 · LIR DL 824 Ley 21.210 · SII Chile</span>
+    <span>⚠️ Solo uso referencial — Consulte a su asesor tributario</span>
+  </div>
+</div><!-- /app -->
+
+<script>
+'use strict';
+const USERS={
+  admin:   {pass:'admin123',name:'Administrador',role:'admin',   label:'Administrador'},
+  contador:{pass:'conta456',name:'Contador',     role:'contador',label:'Contador'},
+  viewer:  {pass:'view789', name:'Solo Lectura', role:'viewer',  label:'Solo Lectura'},
+};
+let CU=null;
+const REGS={
+  d3: {code:'14 D N°3',name:'Pro-Pyme General',    tasa:.125,cPct:1.00,color:'var(--r1)',light:'rgba(13,92,58,.07)',  desc:'Ing.percibidos − Gast.pagados',lim:'75.000 UF', pres:false,bal:false,art:'Art.14 D N°3'},
+  d8: {code:'14 D N°8',name:'Pro-Pyme Transparente',tasa:.00,cPct:.00, color:'var(--r2)',light:'rgba(37,99,235,.07)', desc:'Empresa no paga · Socios IGC',   lim:'75.000 UF', pres:false,bal:false,art:'Art.14 D N°8'},
+  a14:{code:'14 A',    name:'Semi-Integrado',        tasa:.27, cPct:.65, color:'var(--r3)',light:'rgba(124,58,237,.07)',desc:'Renta efectiva · Contab.completa', lim:'Sin límite', pres:false,bal:true, art:'Art.14 A'},
+  p34:{code:'Art.34',  name:'Renta Presunta',         tasa:.10, cPct:1.00,color:'var(--r4)',light:'rgba(217,119,6,.07)',desc:'Agric. · Transp. · Minería',      lim:'Según rubro',pres:true, bal:false,art:'Art.34'},
+  b14:{code:'14 B',    name:'No sujetos Art.14',      tasa:.27, cPct:.00, color:'var(--r5)',light:'rgba(100,116,139,.07)',desc:'Corporaciones · Fund. · Estado', lim:'Sin límite', pres:false,bal:true, art:'Art.14 B'},
+};
+const IGC=[
+  {t:1,d:0,        h:11046078, r:0,    rb:0,        uta:'0–13,5'},
+  {t:2,d:11046079, h:24546840, r:.04,  rb:441843,   uta:'13,5–30'},
+  {t:3,d:24546841, h:40911400, r:.08,  rb:1423117,  uta:'30–50'},
+  {t:4,d:40911401, h:57276720, r:.135, rb:3673846,  uta:'50–70'},
+  {t:5,d:57276721, h:73641960, r:.23,  rb:9115957,  uta:'70–90'},
+  {t:6,d:73641961, h:98189280, r:.304, rb:14565851, uta:'90–120'},
+  {t:7,d:98189281, h:245473200,r:.35,  rb:19077158, uta:'120–300'},
+  {t:8,d:245473201,h:Infinity, r:.40,  rb:31351019, uta:'>300'},
+];
+const MESES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+let rentaData=MESES.map(m=>({mes:m,ing:0,gas:0,ppm:0,ivad:0,ivac:0,ret:0,obs:''}));
+let cos=[],idx=0;
+function nCo(n='Empresa 1'){return{name:n,rut:'',giro:'',tipo:'SA / SpA / Ltda.',ac:'2025',at:'2026',reg:'d3',ing:0,gas:0,util:0,aval:0,agr:0,ded:0,c33:0,sen:0,don:0,con:0,ppm:0,ret:0};}
+
+// LOGIN
+function doLogin(){
+  const u=gv('lu').trim(),p=gv('lp').trim(),usr=USERS[u];
+  if(usr&&usr.pass===p)startSess(u,usr);
+  else{document.getElementById('lerr').style.display='block';document.getElementById('lp').value='';}
+}
+function qLogin(u,p){document.getElementById('lu').value=u;document.getElementById('lp').value=p;doLogin();}
+function startSess(u,usr){
+  CU={...usr,un:u};
+  document.getElementById('lerr').style.display='none';
+  const lw=document.getElementById('loginWrap');
+  lw.style.opacity='0';lw.style.pointerEvents='none';
+  setTimeout(()=>lw.style.display='none',500);
+  const app=document.getElementById('app');
+  app.style.display='flex';app.style.opacity='0';app.style.transition='opacity .4s';
+  setTimeout(()=>app.style.opacity='1',50);
+  document.getElementById('tbName').textContent=usr.name;
+  document.getElementById('tbRole').textContent=usr.label;
+  document.getElementById('tbAva').textContent=usr.name[0];
+  applyRole();init();
+}
+function doLogout(){
+  CU=null;
+  const app=document.getElementById('app');
+  app.style.opacity='0';
+  setTimeout(()=>{
+    app.style.display='none';app.style.opacity='';
+    const lw=document.getElementById('loginWrap');
+    lw.style.display='flex';lw.style.opacity='1';lw.style.pointerEvents='';
+    document.getElementById('lp').value='';document.getElementById('lu').value='';
+  },400);
+}
+function applyRole(){
+  if(!CU)return;
+  if(CU.role==='viewer'){
+    document.querySelectorAll('.fi:not([readonly])').forEach(el=>{el.readOnly=true;el.style.opacity='.7';});
+    const ab=document.getElementById('actBar');if(ab){ab.style.opacity='.4';ab.style.pointerEvents='none';}
+    document.getElementById('sb-adm').style.display='none';
+  }
+}
+
+// REGIME GRID
+function buildRG(){
+  const g=document.getElementById('rgrid');g.innerHTML='';
+  Object.keys(REGS).forEach(k=>{
+    const r=REGS[k],d=document.createElement('div');
+    d.className='rc';d.id='rc-'+k;
+    d.style.setProperty('--rcol',r.color);d.style.setProperty('--rclt',r.light);
+    d.onclick=()=>selR(k);
+    d.innerHTML=`<div class="rc-bar"></div><div class="rc-sel">✓</div>
+      <div class="rc-code">${r.art}</div>
+      <div class="rc-rate">${(r.tasa*100).toFixed(r.tasa===0?0:1)}%</div>
+      <div class="rc-name">${r.name}</div>
+      <div class="rc-desc">${r.desc}</div>
+      <span class="rc-lim">${r.lim}</span>`;
+    g.appendChild(d);
+  });
+}
+function selR(k){
+  setH('ci-reg',k);
+  document.querySelectorAll('.rc').forEach(e=>e.classList.remove('active'));
+  document.getElementById('rc-'+k)?.classList.add('active');
+  document.getElementById('row-aval').style.display=REGS[k].pres?'grid':'none';
+  calc();
+}
+function buildIGCT(){
+  const b=document.getElementById('igcTB');if(!b)return;b.innerHTML='';
+  IGC.forEach(t=>{const tr=document.createElement('tr');tr.id='igcr-'+t.t;tr.innerHTML=`<td>Tramo ${t.t}</td><td class="mono">$${fm(t.d)}</td><td class="mono">${t.h===Infinity?'Ilimitado':'$'+fm(t.h)}</td><td class="mono">${(t.r*100).toFixed(1)}%</td><td class="mono">$${fm(t.rb)}</td><td class="mono">${t.uta} UTA</td>`;b.appendChild(tr);});
+}
+
+// CO MANAGEMENT
+function renderTabs(){
+  const b=document.getElementById('coBar');b.innerHTML='';
+  cos.forEach((c,i)=>{
+    const t=document.createElement('div');t.className='co-tab'+(i===idx?' active':'');
+    t.innerHTML=`<span onclick="swC(${i})">${c.name||'Empresa '+(i+1)}</span><span class="co-del" onclick="delC(event,${i})">✕</span>`;
+    b.appendChild(t);
+  });
+  const ab=document.createElement('button');ab.className='btn-addco';ab.textContent='＋ Nueva Empresa';ab.onclick=addC;b.appendChild(ab);
+}
+function addC(){savC();cos.push(nCo('Empresa '+(cos.length+1)));idx=cos.length-1;renderTabs();loadC(idx);}
+function delC(e,i){e.stopPropagation();if(cos.length===1){alert('Mínimo una empresa.');return;}cos.splice(i,1);if(idx>=cos.length)idx=cos.length-1;renderTabs();loadC(idx);}
+function swC(i){savC();idx=i;renderTabs();loadC(i);}
+function uco(){savC();renderTabs();calc();}
+function savC(){
+  if(!cos[idx])return;const c=cos[idx];
+  c.name=gv('ci-nom')||('Empresa '+(idx+1));c.rut=gv('ci-rut');c.giro=gv('ci-giro');c.tipo=gv('ci-tipo');c.ac=gv('ci-ac');c.at=gv('ci-at');
+  c.reg=gv('ci-reg')||'d3';
+  c.ing=gn('f-ing');c.gas=gn('f-gas');c.util=gn('f-util');c.aval=gn('f-aval');c.agr=gn('f-agr');c.ded=gn('f-ded');
+  c.c33=gn('c-33');c.sen=gn('c-sen');c.don=gn('c-don');c.con=gn('c-con');c.ppm=gn('c-ppm');c.ret=gn('c-ret');
+}
+function loadC(i){
+  const c=cos[i];
+  sv('ci-nom',c.name);sv('ci-rut',c.rut);sv('ci-giro',c.giro);sv('ci-tipo',c.tipo);sv('ci-ac',c.ac);sv('ci-at',c.at);
+  setH('ci-reg',c.reg||'d3');
+  sv('f-ing',c.ing);sv('f-gas',c.gas);sv('f-util',c.util);sv('f-aval',c.aval);sv('f-agr',c.agr);sv('f-ded',c.ded);
+  sv('c-33',c.c33);sv('c-sen',c.sen);sv('c-don',c.don);sv('c-con',c.con);sv('c-ppm',c.ppm);sv('c-ret',c.ret);
+  document.querySelectorAll('.rc').forEach(e=>e.classList.remove('active'));
+  document.getElementById('rc-'+(c.reg||'d3'))?.classList.add('active');
+  document.getElementById('row-aval').style.display=REGS[c.reg||'d3'].pres?'grid':'none';
+  calc();
+}
+
+// CALC ENGINE
+function cD(c){
+  const r=REGS[c.reg]||REGS.d3;
+  let base;
+  if(c.reg==='p34')base=c.aval*0.10;
+  else if(r.bal)base=Math.max(0,c.util+c.agr-c.ded);
+  else base=Math.max(0,c.ing-c.gas+c.agr-c.ded);
+  let inv=0;
+  if(c.reg==='a14'){const UF=38285.53;inv=Math.min(base*.5,5000*UF);}
+  const bai=Math.max(0,base-inv);
+  const impD=bai*r.tasa;
+  const totC=c.c33+c.sen+c.don+c.con+c.ppm+c.ret;
+  const impP=Math.max(0,impD-totC);
+  const crS=impD*r.cPct;
+  return{base,inv,bai,impD,totC,impP,crS,r};
+}
+function calc(){
+  savC();const c=cos[idx];const{base,inv,bai,impD,totC,impP,crS,r}=cD(c);
+  st('r-base',fm(base));st('r-tasa',(r.tasa*100).toFixed(r.tasa===0?0:1));
+  st('r-inv',fm(inv));st('r-cred',fm(totC));st('r-impd',fm(impD));st('r-pagar',fm(impP));st('r-crsoc',fm(crS));
+  document.getElementById('inv-desc').textContent=c.reg==='a14'?`50% RLI=$${fm(inv)} (tope 5.000 UF)`:'Solo aplica en régimen 14 A';
+  document.getElementById('csd').textContent=c.reg==='d8'?'0% – empresa exenta, socios en IGC':c.reg==='a14'||c.reg==='b14'?'65% del impuesto determinado':'100% del impuesto determinado';
+  sv('k-base','$'+fm(base));sv('k-base-s',r.code+' – '+r.name);
+  sv('k-imp','$'+fm(impD));sv('k-imp-s','Tasa '+(r.tasa*100).toFixed(r.tasa===0?0:1)+'%');
+  sv('k-pagar','$'+fm(impP));sv('k-pagar-s',impP===0?'✅ Sin deuda tributaria':'⚠️ Deuda a pagar');
+  sv('k-cred','$'+fm(crS));sv('k-cred-s',(r.cPct*100).toFixed(0)+'% del impuesto');
+  st('f22l1',fm(base));st('f22l18',fm(impD));st('f22l30',fm(totC));st('f22l58',fm(c.ppm));
+  const s=impP-c.ppm;const el=document.getElementById('f22l64');
+  if(el){el.textContent=(s<0?'DEVOLUCIÓN ':'')+'$'+fm(Math.abs(s));el.style.color=s<0?'var(--ok)':'var(--er)';}
+  const au=document.getElementById('adm-u');if(au&&CU)au.textContent=CU.name;
+  const ar=document.getElementById('adm-r');if(ar&&CU)ar.textContent=CU.label;
+  const ac2=document.getElementById('adm-c');if(ac2)ac2.textContent=cos.length;
+  updComp();updMulti();updVal();calcIGC();
+}
+
+// COMPARATIVA
+function updComp(){
+  const c=cos[idx];
+  const rows=Object.keys(REGS).map(k=>({k,...cD({...c,reg:k})}));
+  const minI=Math.min(...rows.map(r=>r.impP));
+  const b=document.getElementById('cmpB');if(!b)return;b.innerHTML='';
+  rows.forEach(r=>{
+    const best=r.impP===minI;const rr=REGS[r.k];
+    const tr=document.createElement('tr');if(best)tr.className='best';
+    tr.innerHTML=`<td><span class="rdot" style="background:${rr.color}"></span>${rr.code} – ${rr.name}${best?'<span class="bbest">Mejor</span>':''}</td>
+      <td class="mono">${(rr.tasa*100).toFixed(rr.tasa===0?0:1)}%</td>
+      <td class="mono">$${fm(r.base)}</td><td class="mono">$${fm(r.impD)}</td><td class="mono">$${fm(r.totC)}</td>
+      <td class="mono" style="font-weight:700;color:${best?'var(--ok)':'inherit'}">$${fm(r.impP)}</td>
+      <td class="mono">$${fm(r.crS)}</td>
+      <td class="mono" style="color:${r.impP===minI?'var(--ok)':'var(--er)'}">+$${fm(r.impP-minI)}</td>`;
+    b.appendChild(tr);
+  });
+  const best=rows.find(r=>r.impP===minI);const worst=rows.reduce((a,b)=>a.impP>b.impP?a:b);
+  const an=document.getElementById('cmpA');if(!an)return;
+  an.innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px">
+    <div style="padding:13px;background:var(--ok2);border-radius:9px;border:1px solid rgba(5,150,105,.2)">
+      <div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ok);font-weight:800;margin-bottom:4px">✅ Régimen Más Conveniente</div>
+      <div style="font-weight:700">${REGS[best.k].code} – ${REGS[best.k].name}</div>
+      <div class="mono" style="font-size:1.05rem;color:var(--ok);margin-top:3px">$${fm(best.impP)}</div>
+    </div>
+    <div style="padding:13px;background:var(--wa2);border-radius:9px;border:1px solid rgba(217,119,6,.2)">
+      <div style="font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--wa);font-weight:800;margin-bottom:4px">💰 Ahorro vs. Peor Opción</div>
+      <div style="font-weight:700">${REGS[worst.k].code} → ${REGS[best.k].code}</div>
+      <div class="mono" style="font-size:1.05rem;color:var(--wa);margin-top:3px">$${fm(worst.impP-best.impP)}</div>
+    </div>
+  </div>
+  <div style="padding:10px;background:var(--pr3);border-radius:7px;border:1px solid var(--pr4);font-size:.73rem;color:var(--pr)">ℹ️ Comparativa referencial. 14 A y 14 B usan utilidad balance; Art.34 usa avalúo; 14 A incluye incentivo inversión.</div>`;
+}
+
+// MULTIEMPRESA
+function updMulti(){
+  const g=document.getElementById('mgrid');if(!g)return;g.innerHTML='';let ti=0,tc=0;
+  cos.forEach((c,i)=>{
+    const d=cD(c);ti+=d.impP;tc+=d.crS;
+    const row=document.createElement('div');row.className='mgr-r';
+    row.innerHTML=`<span><span class="rdot" style="background:${d.r.color}"></span><b>${c.name||'Empresa '+(i+1)}</b>${c.rut?'<br><small style="color:var(--mu);font-size:.62rem">'+c.rut+'</small>':''}</span>
+      <span>${d.r.code}</span><span class="mono">$${fm(d.base)}</span>
+      <span class="mono" style="font-weight:700;color:${d.impP===0?'var(--ok)':'var(--er)'}">$${fm(d.impP)}</span>
+      <span class="mono">$${fm(d.crS)}</span>`;
+    g.appendChild(row);
+  });
+  st('mg-n',cos.length);st('mg-i','$'+fm(ti));st('mg-c','$'+fm(tc));
+}
+
+// IGC
+function calcIGC(){
+  const sue=gn('ig-sue'),ret=gn('ig-ret'),otr=gn('ig-otr'),cot=gn('ig-cot'),pct=gn('ig-pct')/100;
+  const d=cD(cos[idx]);const c1=d.crS*pct;
+  const rb=Math.max(0,sue+ret+otr-cot+c1);
+  let det=0,tr=IGC[0];
+  IGC.forEach(t=>{if(rb>=t.d){det=rb*t.r-t.rb;tr=t;}});
+  det=Math.max(0,det);const liq=Math.max(0,det-c1);
+  const tef=rb>0?(liq/rb*100).toFixed(2):'0.00';
+  st('ig-rb',fm(rb));st('ig-c1',fm(c1));st('ig-trm',(tr.r*100).toFixed(1));
+  st('ig-det',fm(det));st('ig-liq',fm(liq));st('ig-tef',tef);st('ig-tot',fm(d.impP+liq));
+  IGC.forEach(t=>{const el=document.getElementById('igcr-'+t.t);if(el)el.style.background=t.t===tr.t?'var(--pr3)':'';});
+}
+
+// VALIDACIONES
+function updVal(){
+  const bd=document.getElementById('valBody');if(!bd)return;
+  const c=cos[idx];const d=cD(c);
+  const chk=[
+    {ok:c.ing>=c.gas||c.reg==='p34'||REGS[c.reg].bal,tp:'ok',l:'Ingresos ≥ Gastos',ds:'Los ingresos percibidos cubren los gastos del período'},
+    {ok:d.totC<=d.impD||d.impD===0,tp:d.totC>d.impD?'wa':'ok',l:'Créditos vs. Impuesto',ds:d.totC>d.impD?'Créditos superan el impuesto (probable devolución)':'Créditos ≤ impuesto determinado'},
+    {ok:d.impP>=0,tp:'ok',l:'Impuesto Líquido ≥ $0',ds:'MAX(0,...) garantiza que no sea negativo'},
+    {ok:c.reg!=='d8'||d.impP===0,tp:c.reg==='d8'&&d.impP>0?'er':'ok',l:'14 D8 – Empresa exenta 1ª Cat.',ds:'En transparente la empresa no debe pagar impuesto de 1ª Categoría'},
+    {ok:c.ing<75000*38285||REGS[c.reg].bal,tp:'wa',l:'Límite Pro-Pyme (75.000 UF)',ds:'Con ingresos elevados verificar si corresponde régimen 14 A o 14 B'},
+    {ok:d.impD>0||(c.ing===0&&c.gas===0&&c.aval===0&&c.util===0),tp:'wa',l:'Datos de simulación',ds:d.impD===0&&c.ing===0&&c.util===0?'Ingrese datos para simular':'Simulación activa con datos'},
+  ];
+  bd.innerHTML='';
+  chk.forEach(ch=>{
+    const tp=ch.ok?(ch.tp==='wa'?'wa':'ok'):(ch.tp==='er'?'er':'wa');
+    const ic=tp==='ok'?'✓':tp==='er'?'✗':'!';
+    const div=document.createElement('div');div.className='vi '+tp;
+    div.innerHTML=`<div class="vi-ic">${ic}</div><div class="vi-body"><b>${ch.l}</b><span>${ch.ds}</span></div><span class="vi-st">${tp==='ok'?'OK':tp==='er'?'ERROR':'REVISAR'}</span>`;
+    bd.appendChild(div);
+  });
+}
+
+// RENTAS EMPRESARIALES
+function buildRentaTable(){
+  const body=document.getElementById('rentaBody');if(!body)return;
+  body.innerHTML='';
+  rentaData.forEach((m,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td style="font-weight:600;white-space:nowrap">${m.mes}</td>
+      <td><input class="renta-input" type="number" min="0" value="${m.ing||''}" placeholder="0" onchange="rentaChange(${i},'ing',this.value)"></td>
+      <td><input class="renta-input" type="number" min="0" value="${m.gas||''}" placeholder="0" onchange="rentaChange(${i},'gas',this.value)"></td>
+      <td class="mono" id="rr-res-${i}" style="font-weight:700">$0</td>
+      <td class="mono" id="rr-mrg-${i}">0%</td>
+      <td><input class="renta-input" type="number" min="0" value="${m.ppm||''}" placeholder="0" onchange="rentaChange(${i},'ppm',this.value)"></td>
+      <td><input class="renta-input" type="number" min="0" value="${m.ivad||''}" placeholder="0" onchange="rentaChange(${i},'ivad',this.value)"></td>
+      <td><input class="renta-input" type="number" min="0" value="${m.ivac||''}" placeholder="0" onchange="rentaChange(${i},'ivac',this.value)"></td>
+      <td class="mono" id="rr-iva-${i}">$0</td>
+      <td><input class="renta-input" type="number" min="0" value="${m.ret||''}" placeholder="0" onchange="rentaChange(${i},'ret',this.value)"></td>
+      <td><input style="font-family:inherit;font-size:.76rem;padding:4px 7px;border:1.5px solid var(--b2);border-radius:5px;outline:none;width:100px;color:var(--tx);background:var(--s)" type="text" value="${m.obs||''}" placeholder="Notas..." onchange="rentaChange(${i},'obs',this.value)"></td>
+    `;
+    body.appendChild(tr);
+  });
+  updRentas();
+}
+function rentaChange(i,campo,val){
+  rentaData[i][campo]=campo==='obs'?val:(parseFloat(val)||0);
+  updRentas();
+}
+function updRentas(){
+  let tIng=0,tGas=0,tPpm=0;
+  rentaData.forEach((m,i)=>{
+    const res=m.ing-m.gas;const mrg=m.ing>0?(res/m.ing*100).toFixed(1):0;
+    const iva=m.ivad-m.ivac;
+    tIng+=m.ing;tGas+=m.gas;tPpm+=m.ppm;
+    const re=document.getElementById('rr-res-'+i);
+    const rm=document.getElementById('rr-mrg-'+i);
+    const ri=document.getElementById('rr-iva-'+i);
+    if(re){re.textContent='$'+fm(res);re.style.color=res>=0?'var(--ok)':'var(--er)';}
+    if(rm){rm.textContent=mrg+'%';rm.style.color=res>=0?'var(--ok)':'var(--er)';}
+    if(ri){ri.textContent='$'+fm(iva);ri.style.color=iva>=0?'var(--er)':'var(--ok)';}
+  });
+  const tRes=tIng-tGas;const tMrg=tIng>0?(tRes/tIng*100).toFixed(1):0;
+  st('r-tot-ing','$'+fm(tIng));st('r-tot-gas','$'+fm(tGas));
+  st('r-tot-res','$'+fm(tRes));st('r-tot-ppm','$'+fm(tPpm));
+  st('r-tot-mrg',tMrg+'%');
+  // Trimestres
+  const tBody=document.getElementById('trimBody');
+  if(tBody){
+    tBody.innerHTML='';
+    ['Q1','Q2','Q3','Q4'].forEach((q,qi)=>{
+      const ms=rentaData.slice(qi*3,(qi+1)*3);
+      const qI=ms.reduce((a,m)=>a+m.ing,0);
+      const qG=ms.reduce((a,m)=>a+m.gas,0);
+      const qR=qI-qG;const qM=qI>0?(qR/qI*100).toFixed(1):0;
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td><b>${q} (${MESES[qi*3].slice(0,3)}–${MESES[qi*3+2].slice(0,3)})</b></td>
+        <td class="mono">$${fm(qI)}</td><td class="mono">$${fm(qG)}</td>
+        <td class="mono" style="font-weight:700;color:${qR>=0?'var(--ok)':'var(--er)'}">$${fm(qR)}</td>
+        <td class="mono" style="color:${qR>=0?'var(--ok)':'var(--er)'}">${qM}%</td>`;
+      tBody.appendChild(tr);
+    });
+  }
+  // Proyección
+  const mesesConDatos=rentaData.filter(m=>m.ing>0||m.gas>0).length;
+  const proy=document.getElementById('proyBody');
+  if(proy){
+    if(mesesConDatos===0){proy.innerHTML='<div style="color:var(--mu);font-size:.82rem">Ingrese datos de al menos un mes.</div>';return;}
+    const avgIng=tIng/mesesConDatos;const avgGas=tGas/mesesConDatos;
+    const proyIng=avgIng*12;const proyGas=avgGas*12;const proyRes=proyIng-proyGas;
+    proy.innerHTML=`
+      <div style="font-size:.76rem;color:var(--mu);margin-bottom:10px">Basado en ${mesesConDatos} mes(es) con datos</div>
+      <div style="display:grid;gap:8px">
+        <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><span>Ingresos Anuales Proyectados</span><b class="mono">$${fm(proyIng)}</b></div>
+        <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--s);border-radius:7px;border:1px solid var(--b1)"><span>Gastos Anuales Proyectados</span><b class="mono">$${fm(proyGas)}</b></div>
+        <div style="display:flex;justify-content:space-between;padding:9px 12px;background:${proyRes>=0?'var(--ok2)':'var(--er2)'};border-radius:7px;border:1px solid ${proyRes>=0?'rgba(5,150,105,.2)':'rgba(220,38,38,.2)'}">
+          <span style="font-weight:700;color:${proyRes>=0?'var(--ok)':'var(--er)'}">Resultado Anual Proyectado</span>
+          <b class="mono" style="color:${proyRes>=0?'var(--ok)':'var(--er)'}">$${fm(proyRes)}</b>
+        </div>
+        <div style="padding:9px 12px;background:var(--pr3);border-radius:7px;border:1px solid var(--pr4);font-size:.72rem;color:var(--pr)">
+          💡 Puede ingresar esta proyección en el <b>Simulador Principal</b> como base de cálculo del impuesto anual estimado.
+        </div>
+      </div>`;
+  }
+}
+function limpiarRentas(){if(!confirm('¿Limpiar todos los datos de Rentas?'))return;rentaData=MESES.map(m=>({mes:m,ing:0,gas:0,ppm:0,ivad:0,ivac:0,ret:0,obs:''}));buildRentaTable();}
+function exportRentas(){
+  if(CU?.role==='viewer'){alert('Sin permiso.');return;}
+  const rows=[['Mes','Ingresos','Gastos','Resultado','Margen%','PPM','IVA Débito','IVA Crédito','IVA Neto','Retenciones','Observaciones']];
+  rentaData.forEach(m=>{const res=m.ing-m.gas;const mrg=m.ing>0?(res/m.ing*100).toFixed(1):0;const iva=m.ivad-m.ivac;rows.push([m.mes,m.ing,m.gas,res,mrg,m.ppm,m.ivad,m.ivac,iva,m.ret,m.obs]);});
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(rows.map(r=>r.join(';')).join('\n'));
+  a.download='Rentas_Empresariales_2025.csv';a.click();
+}
+
+// PAGE NAV
+function showPg(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const p=document.getElementById('page-'+id);
+  if(p){p.classList.add('active');p.classList.remove('fa');void p.offsetWidth;p.classList.add('fa');}
+  document.querySelectorAll('.sbi').forEach(s=>s.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  else document.querySelectorAll('.sbi').forEach(s=>{if(s.getAttribute('onclick')&&s.getAttribute('onclick').includes("'"+id+"'"))s.classList.add('active');});
+  if(id==='comp')updComp();if(id==='multi')updMulti();if(id==='igc')calcIGC();if(id==='val')updVal();
+  if(id==='rentas')buildRentaTable();
+}
+
+// UTILS
+const fm=n=>Math.round(n).toLocaleString('es-CL');
+const gv=id=>document.getElementById(id)?.value||'';
+const gn=id=>parseFloat(document.getElementById(id)?.value)||0;
+const sv=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v;};
+const st=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v;};
+function setH(id,val){let el=document.getElementById(id);if(!el){el=document.createElement('input');el.type='hidden';el.id=id;document.body.appendChild(el);}el.value=val;}
+
+function loadEj(){
+  sv('f-ing',50000000);sv('f-gas',30000000);sv('f-util',20000000);sv('f-aval',25000000);
+  sv('f-agr',500000);sv('f-ded',300000);sv('c-33',2000000);sv('c-sen',500000);
+  sv('c-don',300000);sv('c-con',100000);sv('c-ppm',1200000);sv('c-ret',200000);
+  sv('ci-nom','Comercial Ejemplo SpA');sv('ci-rut','76.123.456-7');sv('ci-giro','Comercio al por menor');
+  calc();
+}
+function limpiar(){['f-ing','f-gas','f-util','f-aval','f-agr','f-ded','c-33','c-sen','c-don','c-con','c-ppm','c-ret'].forEach(id=>sv(id,0));calc();}
+function exportCSV(){
+  if(CU?.role==='viewer'){alert('Su perfil no tiene permiso para exportar.');return;}
+  const c=cos[idx];const d=cD(c);
+  const rows=[['Campo','Valor'],['Empresa',c.name],['RUT',c.rut],['Giro',c.giro],['Tipo',c.tipo],['AC',c.ac],['AT',c.at],
+    ['Régimen',d.r.code+' – '+d.r.name],['Tasa',(d.r.tasa*100).toFixed(1)+'%'],
+    ['Ingresos',c.ing],['Gastos',c.gas],['Utilidad',c.util],['Avalúo',c.aval],
+    ['Agregados',c.agr],['Deducciones',c.ded],['Base Imponible',d.base],
+    ['Incentivo 14A',d.inv],['Base tras incentivo',d.bai],['Imp.Determinado',d.impD],
+    ['Total Créditos',d.totC],['Imp.Líquido',d.impP],['Créd.Socios',d.crS]];
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(rows.map(r=>r.join(';')).join('\n'));
+  a.download=(c.name||'empresa').replace(/\s+/g,'_')+'_AT2026.csv';a.click();
+}
+
+function init(){cos=[nCo('Empresa 1')];idx=0;buildRG();buildIGCT();renderTabs();loadC(0);}
+setH('ci-reg','d3');
+</script>
+</body>
+</html>
