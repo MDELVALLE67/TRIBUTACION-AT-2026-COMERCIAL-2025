@@ -246,6 +246,9 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);min-he
 .footer{background:var(--w);border-top:1px solid var(--b1);padding:9px 18px;font-size:.67rem;color:var(--mu);display:flex;justify-content:space-between;}
 ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px;}
 </style>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
@@ -848,6 +851,7 @@ function delC(e,i){e.stopPropagation();if(cos.length===1){alert('Mínimo una emp
 function swC(i){savC();idx=i;renderTabs();loadC(i);}
 function uco(){savC();renderTabs();calc();}
 function savC(){
+  fbGuardar();
   if(!cos[idx])return;const c=cos[idx];
   c.name=gv('ci-nom')||('Empresa '+(idx+1));c.rut=gv('ci-rut');c.giro=gv('ci-giro');c.tipo=gv('ci-tipo');c.ac=gv('ci-ac');c.at=gv('ci-at');
   c.reg=gv('ci-reg')||'d3';
@@ -1121,7 +1125,58 @@ function exportCSV(){
   a.download=(c.name||'empresa').replace(/\s+/g,'_')+'_AT2026.csv';a.click();
 }
 
-function init(){cos=[nCo('Empresa 1')];idx=0;buildRG();buildIGCT();renderTabs();loadC(0);}
+// ── FIREBASE ─────────────────────────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSy8wNmP8T1dEqMi-o-_Yb8lE1W87SDXbax4",
+  authDomain: "tributacion-2025.firebaseapp.com",
+  projectId: "tributacion-2025",
+  storageBucket: "tributacion-2025.firebasestorage.app",
+  messagingSenderId: "994878360969",
+  appId: "1:994878360969:web:72d45f783ef454a1ba2558"
+};
+firebase.initializeApp(firebaseConfig);
+const fbdb = firebase.firestore();
+const FB_DOC = 'tributacion/empresas2025';
+let _fbTimer = null;
+
+function fbGuardar() {
+    clearTimeout(_fbTimer);
+    _fbTimer = setTimeout(() => {
+        fbdb.doc(FB_DOC).set({cos: JSON.stringify(cos), updated: new Date().toISOString()})
+            .then(() => console.log('☁️ Guardado en Firebase'))
+            .catch(e => console.warn('⚠️ Error Firebase:', e));
+    }, 1500);
+}
+
+function fbCargar(callback) {
+    fbdb.doc(FB_DOC).get()
+        .then(doc => {
+            if (doc.exists && doc.data().cos) {
+                try {
+                    cos = JSON.parse(doc.data().cos);
+                    console.log('☁️ Datos cargados desde Firebase');
+                } catch(e) { cos = [nCo('Empresa 1')]; }
+            } else {
+                cos = [nCo('Empresa 1')];
+            }
+            callback();
+        })
+        .catch(e => {
+            console.warn('⚠️ Firebase no disponible:', e);
+            cos = [nCo('Empresa 1')];
+            callback();
+        });
+}
+
+function init(){
+    fbCargar(() => {
+        idx = 0;
+        buildRG();
+        buildIGCT();
+        renderTabs();
+        loadC(0);
+    });
+}
 setH('ci-reg','d3');
 </script>
 </body>
